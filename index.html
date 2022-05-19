@@ -8,7 +8,46 @@
     <link rel="stylesheet" href="./src/styles/main.css">
   </head>
   <body>
-    <h1>#todo</h1>
+    <header class="header">
+      <h1 class="header__title">#todo</h1>
+    </header>
+
+    <section class="todo-app">
+      <nav class="todo-app__navigation">
+        <ul class="status-list">
+          <li class="status-list__item">
+            <a href="#" class="status-list__status">All</a>
+          </li>
+          <li class="status-list__item">
+            <a href="#" class="status-list__status">Pending</a>
+          </li>
+          <li class="status-list__item">
+            <a href="#" class="status-list__status">Completed</a>
+          </li>
+        </ul>
+      </nav>
+
+      <form class="todo-form">
+        <input
+          type="text"
+          class="todo-form__details"
+          name="todo-details"
+          placeholder="add details"
+        >
+        <button type="submit" class="todo-form__submit">Add</button>
+      </form>
+
+      <ul class="todo-list">
+        <li class="todo-list__item">
+          <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox">
+          Do coding challenges
+        </li>
+        <li class="todo-list__item">
+          <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox" checked>
+          Do coding challenges
+        </li>
+      </ul>
+    </section>
 
     <script src="./src/scripts/app.js"></script>
   </body>
