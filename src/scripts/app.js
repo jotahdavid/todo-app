@@ -12,7 +12,12 @@ const todoList = [
 ];
 
 const $todoForm = document.querySelector('.todo-form');
+const $statusList = document.querySelectorAll('.status-list__item');
+
 $todoForm.addEventListener('submit', handleTodoSubmit);
+$statusList.forEach($status => {
+  $status.addEventListener('click', handleStatusClick);
+});
 
 function handleTodoSubmit(event) {
   event.preventDefault();
@@ -27,6 +32,20 @@ function handleTodoSubmit(event) {
   $todoForm.reset();
 
   renderTodoList(todoList);
+}
+
+function handleStatusClick(event) {
+  event.preventDefault();
+
+  if (this.classList.contains('--active')) return;
+
+  $statusList.forEach($status => {
+    if ($status === this) {
+      this.classList.add('--active');
+      return;
+    }
+    $status.classList.remove('--active');
+  });
 }
 
 function renderTodoList(todoList) {
