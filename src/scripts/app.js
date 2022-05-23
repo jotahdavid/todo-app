@@ -1,15 +1,7 @@
 import TodoItem from './components/TodoItem.js';
+import handleLocalStorage from './utils/handleLocalStorage.js';
 
-const todoList = [
-  {
-    details: 'Do coding challenges',
-    completed: false
-  },
-  {
-    details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos alias soluta optio nulla officia corporis inventore esse expedita in rem saepe quis laborum ex similique unde, aliquam vero quae corrupti',
-    completed: true
-  }
-];
+const todoList = handleLocalStorage.get('TODO_LIST') ?? [];
 
 const $todoForm = document.querySelector('.todo-form');
 const $statusList = document.querySelectorAll('.status-list__item');
@@ -29,6 +21,8 @@ function handleTodoSubmit(event) {
     details: newTodo,
     completed: false
   });
+  handleLocalStorage.save('TODO_LIST', todoList);
+
   $todoForm.reset();
 
   renderTodoList(todoList);
@@ -60,4 +54,6 @@ function renderTodoList(todoList) {
   $todoList.appendChild($fragment);
 }
 
-renderTodoList(todoList);
+window.addEventListener('load', () => {
+  renderTodoList(todoList);
+});
