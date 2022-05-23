@@ -15,7 +15,7 @@
     <section class="todo-app">
       <nav class="todo-app__navigation">
         <ul class="status-list">
-          <li class="status-list__item">
+          <li class="status-list__item --active">
             <a href="#" class="status-list__status">All</a>
           </li>
           <li class="status-list__item">
@@ -39,12 +39,28 @@
 
       <ul class="todo-list">
         <li class="todo-list__item">
-          <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox">
-          Do coding challenges
+          <span class="todo-list__checkbox-container">
+            <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox">
+          </span>
+          <p class="todo-list__details">Do coding challenges</p>
         </li>
         <li class="todo-list__item">
-          <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox" checked>
-          Do coding challenges
+          <span class="todo-list__checkbox-container">
+            <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox" checked>
+          </span>
+          <p class="todo-list__details">Do coding challenges</p>
+        </li>
+        <li class="todo-list__item">
+          <span class="todo-list__checkbox-container">
+            <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox" checked>
+          </span>
+          <p class="todo-list__details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos alias soluta optio nulla officia corporis inventore esse expedita in rem saepe quis laborum ex similique unde, aliquam vero quae corrupti.</p>
+        </li>
+        <li class="todo-list__item">
+          <span class="todo-list__checkbox-container">
+            <input type="checkbox" class="todo-list__checkbox" name="todo-checkbox">
+          </span>
+          <p class="todo-list__details">Homework</p>
         </li>
       </ul>
     </section>
