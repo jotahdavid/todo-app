@@ -19,6 +19,7 @@ function handleTodoSubmit(event) {
   if (!newTodo) return;
 
   todoList.push({
+    id: Math.floor(new Date().getTime() * Math.random()),
     details: newTodo,
     completed: false
   });
@@ -49,7 +50,20 @@ function renderTodoList(todoList) {
 
   const $fragment = document.createDocumentFragment();
   $fragment.append(
-    ...todoList.map(todo => TodoItem(todo))
+    ...todoList.map(todo => TodoItem({
+      id: todo.id,
+      details: todo.details,
+      completed: todo.completed,
+      handleCheckboxClick: function() {
+        const id = Number(this.closest('.todo-list__item').getAttribute('data-id'));
+
+        const todoFound = todoListStorage.getById(id);
+        if (!todoFound) return;
+        todoFound.completed = this.checked;
+
+        todoListStorage.update(id, todoFound);
+      }
+    }))
   );
 
   $todoList.appendChild($fragment);
