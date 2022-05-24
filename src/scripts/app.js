@@ -64,34 +64,30 @@ function filterTodoListByStatus(status) {
   return todoList;
 }
 
-function renderTodoList(todoList) {
+function renderTodoList(todoListToRender) {
   const $todoList = document.querySelector('.todo-list');
   $todoList.textContent = null;
 
   const $fragment = document.createDocumentFragment();
   $fragment.append(
-    ...todoList.map(todo => TodoItem({
+    ...todoListToRender.map(todo => TodoItem({
       id: todo.id,
       details: todo.details,
       completed: todo.completed,
       handleCheckboxClick: function() {
         const id = Number(this.closest('.todo-list__item').getAttribute('data-id'));
 
-        const todoFound = todoListStorage.getById(id);
-        if (!todoFound) return;
-        todoFound.completed = this.checked;
+        const todoToUpdate = todoListStorage.getById(id);
+        if (!todoToUpdate) return;
+        todoToUpdate.completed = this.checked;
 
-        todoListStorage.update(id, todoFound);
-        updateTodoListStorage(todoListStorage.getAll());
+        todoListStorage.update(id, todoToUpdate);
+        todoList = todoListStorage.getAll();
       }
     }))
   );
 
   $todoList.appendChild($fragment);
-}
-
-function updateTodoListStorage(newTodoList) {
-  todoList = newTodoList;
 }
 
 window.addEventListener('load', () => {
