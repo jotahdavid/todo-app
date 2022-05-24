@@ -1,6 +1,6 @@
 import createElement from '../utils/createElement.js';
 
-export default function TodoItem({ id, details, completed, handleCheckboxClick }) {
+export default function TodoItem({ id, details, completed, handleCheckboxClick, handleDeleteIconClick }) {
   return createElement('li', { className: 'todo-list__item', 'data-id': id },
     createElement('span', { className: 'todo-list__checkbox-container' },
       createElement('input', {
@@ -12,7 +12,7 @@ export default function TodoItem({ id, details, completed, handleCheckboxClick }
       }),
     ),
     createElement('p', { className: 'todo-list__details' }, details),
-    createElement('button', { className: 'todo-list__delete' },
+    createElement('button', { className: 'todo-list__delete', onClick: handleDeleteIconClick },
       createElement('i', { className: 'todo-list__delete__icon fa-regular fa-trash-can' }),
     ),
   );

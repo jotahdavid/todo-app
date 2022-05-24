@@ -88,13 +88,23 @@ function renderTodoList(todoListToRender) {
         renderTodoList(
           filterTodoListByStatus(getCurrentStatus())
         );
+      },
+      handleDeleteIconClick: function() {
+        const id = Number(this.closest('.todo-list__item').getAttribute('data-id'));
+
+        todoListStorage.delete(id);
+        todoList = todoListStorage.getAll();
+
+        renderTodoList(
+          filterTodoListByStatus(getCurrentStatus())
+        );
       }
     }))
   );
 
   $todoList.appendChild($fragment);
 
-  if (getCurrentStatus() !== 'completed') return;
+  if (getCurrentStatus() !== 'completed' || $todoList.childElementCount === 0) return;
   $todoList.appendChild(
     ButtonDelete({
       title: 'Delete all',
