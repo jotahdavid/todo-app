@@ -64,10 +64,10 @@ function handleStatusClick(event) {
 }
 
 function getCurrentStatus() {
-  const $statusActived = Array.from($statusList)
+  const $statusActive = Array.from($statusList)
     .find($status => $status.classList.contains('--active'));
 
-  return $statusActived.getAttribute('data-status');
+  return $statusActive.getAttribute('data-status');
 }
 
 function renderTodoList(todoList) {
