@@ -2,7 +2,7 @@ import TodoItem from './components/TodoItem.js';
 import LocalStorageHelper from './utils/LocalStorageHelper.js';
 
 const todoListStorage = new LocalStorageHelper('TODO_LIST');
-const todoList = todoListStorage.getAll() ?? [];
+let todoList = todoListStorage.getAll() ?? [];
 
 const $todoForm = document.querySelector('.todo-form');
 const $statusList = document.querySelectorAll('.status-list__item');
@@ -21,13 +21,23 @@ function handleTodoSubmit(event) {
   todoList.push({
     id: Math.floor(new Date().getTime() * Math.random()),
     details: newTodo,
-    completed: false
+    completed: getCurrentStatus() === 'completed'
   });
   todoListStorage.save(todoList);
 
   $todoForm.reset();
 
-  renderTodoList(todoList);
+  if (getCurrentStatus() === 'all') {
+    renderTodoList(todoList);
+  } else if (getCurrentStatus() === 'pending') {
+    renderTodoList(
+      todoList.filter(todo => todo.completed === false)
+    );
+  } else {
+    renderTodoList(
+      todoList.filter(todo => todo.completed === true)
+    );
+  }
 }
 
 function handleStatusClick(event) {
@@ -36,12 +46,28 @@ function handleStatusClick(event) {
   if (this.classList.contains('--active')) return;
 
   $statusList.forEach($status => {
-    if ($status === this) {
-      this.classList.add('--active');
-      return;
-    }
     $status.classList.remove('--active');
   });
+  this.classList.add('--active');
+
+  if (getCurrentStatus() === 'pending') {
+    renderTodoList(
+      todoList.filter(todo => todo.completed === false)
+    );
+  } else if (getCurrentStatus() === 'completed') {
+    renderTodoList(
+      todoList.filter(todo => todo.completed === true)
+    );
+  } else {
+    renderTodoList(todoList);
+  }
+}
+
+function getCurrentStatus() {
+  const $statusActived = Array.from($statusList)
+    .find($status => $status.classList.contains('--active'));
+
+  return $statusActived.getAttribute('data-status');
 }
 
 function renderTodoList(todoList) {
@@ -62,11 +88,16 @@ function renderTodoList(todoList) {
         todoFound.completed = this.checked;
 
         todoListStorage.update(id, todoFound);
+        updateTodoListStorage(todoListStorage.getAll());
       }
     }))
   );
 
   $todoList.appendChild($fragment);
+}
+
+function updateTodoListStorage(newTodoList) {
+  todoList = newTodoList;
 }
 
 window.addEventListener('load', () => {
