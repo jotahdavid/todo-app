@@ -108,7 +108,14 @@ function renderTodoList(todoListToRender) {
   $todoList.appendChild(
     ButtonDelete({
       title: 'Delete all',
-      handleClick: function() {}
+      handleClick: function() {
+        todoListStorage.deleteAllMatch(item => item.completed === true);
+        todoList = todoListStorage.getAll();
+
+        renderTodoList(
+          filterTodoListByStatus(getCurrentStatus())
+        );
+      }
     })
   );
 }
