@@ -1,7 +1,8 @@
 import TodoItem from './components/TodoItem.js';
-import handleLocalStorage from './utils/handleLocalStorage.js';
+import LocalStorageHelper from './utils/LocalStorageHelper.js';
 
-const todoList = handleLocalStorage.get('TODO_LIST') ?? [];
+const todoListStorage = new LocalStorageHelper('TODO_LIST');
+const todoList = todoListStorage.getAll() ?? [];
 
 const $todoForm = document.querySelector('.todo-form');
 const $statusList = document.querySelectorAll('.status-list__item');
@@ -21,7 +22,7 @@ function handleTodoSubmit(event) {
     details: newTodo,
     completed: false
   });
-  handleLocalStorage.save('TODO_LIST', todoList);
+  todoListStorage.save(todoList);
 
   $todoForm.reset();
 
