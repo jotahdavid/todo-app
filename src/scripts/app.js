@@ -1,4 +1,5 @@
 import TodoItem from './components/TodoItem.js';
+import ButtonDelete from './components/ButtonDelete.js';
 import LocalStorageHelper from './utils/LocalStorageHelper.js';
 
 const todoListStorage = new LocalStorageHelper('TODO_LIST');
@@ -92,6 +93,14 @@ function renderTodoList(todoListToRender) {
   );
 
   $todoList.appendChild($fragment);
+
+  if (getCurrentStatus() !== 'completed') return;
+  $todoList.appendChild(
+    ButtonDelete({
+      title: 'Delete all',
+      handleClick: function() {}
+    })
+  );
 }
 
 window.addEventListener('load', () => {
