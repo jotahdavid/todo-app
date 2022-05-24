@@ -83,6 +83,10 @@ function renderTodoList(todoListToRender) {
 
         todoListStorage.update(id, todoToUpdate);
         todoList = todoListStorage.getAll();
+
+        renderTodoList(
+          filterTodoListByStatus(getCurrentStatus())
+        );
       }
     }))
   );
