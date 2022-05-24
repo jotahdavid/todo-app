@@ -27,17 +27,9 @@ function handleTodoSubmit(event) {
 
   $todoForm.reset();
 
-  if (getCurrentStatus() === 'all') {
-    renderTodoList(todoList);
-  } else if (getCurrentStatus() === 'pending') {
-    renderTodoList(
-      todoList.filter(todo => todo.completed === false)
-    );
-  } else {
-    renderTodoList(
-      todoList.filter(todo => todo.completed === true)
-    );
-  }
+  renderTodoList(
+    filterTodoListByStatus(getCurrentStatus())
+  );
 }
 
 function handleStatusClick(event) {
@@ -50,17 +42,9 @@ function handleStatusClick(event) {
   });
   this.classList.add('--active');
 
-  if (getCurrentStatus() === 'pending') {
-    renderTodoList(
-      todoList.filter(todo => todo.completed === false)
-    );
-  } else if (getCurrentStatus() === 'completed') {
-    renderTodoList(
-      todoList.filter(todo => todo.completed === true)
-    );
-  } else {
-    renderTodoList(todoList);
-  }
+  renderTodoList(
+    filterTodoListByStatus(getCurrentStatus())
+  );
 }
 
 function getCurrentStatus() {
@@ -68,6 +52,16 @@ function getCurrentStatus() {
     .find($status => $status.classList.contains('--active'));
 
   return $statusActive.getAttribute('data-status');
+}
+
+function filterTodoListByStatus(status) {
+  if (status === 'pending') {
+    return todoList.filter(todo => todo.completed === false);
+  }
+  if (status === 'completed') {
+    return todoList.filter(todo => todo.completed === true);
+  }
+  return todoList;
 }
 
 function renderTodoList(todoList) {
