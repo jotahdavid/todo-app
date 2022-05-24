@@ -12,5 +12,8 @@ export default function TodoItem({ id, details, completed, handleCheckboxClick }
       }),
     ),
     createElement('p', { className: 'todo-list__details' }, details),
+    createElement('button', { className: 'todo-list__delete' },
+      createElement('i', { className: 'todo-list__delete__icon fa-regular fa-trash-can' }),
+    ),
   );
 }
