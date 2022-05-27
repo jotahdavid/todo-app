@@ -1,7 +1,11 @@
 import createElement from '../utils/createElement.js';
 
 export default function TodoItem({ id, details, completed, handleCheckboxClick, handleDeleteIconClick }) {
-  return createElement('li', { className: 'todo-list__item', 'data-id': id },
+  return createElement('li', {
+      className: 'todo-list__item',
+      'data-id': id,
+      'data-done': completed
+    },
     createElement('span', { className: 'todo-list__checkbox-container' },
       createElement('input', {
         className: 'todo-list__checkbox',

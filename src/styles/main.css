@@ -150,6 +150,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.todo-list__item[data-done="true"] > .todo-list__details {
+  text-decoration: line-through;
+}
+
 .todo-list__item:nth-last-of-type(1) {
   margin-bottom: 0;
 }
