@@ -17,14 +17,14 @@
     <section class="todo-app">
       <nav class="todo-app__navigation">
         <ul class="status-list">
-          <li class="status-list__item --active" data-status="all">
-            <a href="#" class="status-list__status">All</a>
+          <li class="status-list__item --active" data-status="all" tabindex="-1">
+            <a href="#" class="status-list__status" tabindex="3">All</a>
           </li>
-          <li class="status-list__item" data-status="pending">
-            <a href="#" class="status-list__status">Pending</a>
+          <li class="status-list__item" data-status="pending" tabindex="-1">
+            <a href="#" class="status-list__status" tabindex="3">Pending</a>
           </li>
-          <li class="status-list__item" data-status="completed">
-            <a href="#" class="status-list__status">Completed</a>
+          <li class="status-list__item" data-status="completed" tabindex="-1">
+            <a href="#" class="status-list__status" tabindex="3">Completed</a>
           </li>
         </ul>
       </nav>
@@ -36,8 +36,9 @@
           name="todo-details"
           placeholder="add details"
           autocomplete="off"
+          tabindex="1"
         >
-        <button type="submit" class="todo-form__submit">Add</button>
+        <button type="submit" class="todo-form__submit" tabindex="2">Add</button>
       </form>
 
       <ul class="todo-list"></ul>
