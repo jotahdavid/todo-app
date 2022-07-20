@@ -1,6 +1,7 @@
 import TodoItem from './components/TodoItem.js';
 import ButtonDelete from './components/ButtonDelete.js';
 import LocalStorageHelper from './utils/LocalStorageHelper.js';
+import randomId from './utils/randomId.js';
 
 const todoListStorage = new LocalStorageHelper('TODO_LIST');
 let todoList = todoListStorage.getAll() ?? [];
@@ -21,7 +22,7 @@ function handleTodoSubmit(event) {
   if (!todoDetails.trim()) return;
 
   todoList.push({
-    id: Math.floor(new Date().getTime() * Math.random()),
+    id: randomId(),
     details: todoDetails,
     completed: getCurrentStatus() === 'completed'
   });
