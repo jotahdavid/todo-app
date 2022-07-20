@@ -9,6 +9,7 @@ const $todoForm = document.querySelector('.todo-form');
 const $statusList = document.querySelectorAll('.status-list__item');
 
 $todoForm.addEventListener('submit', handleTodoSubmit);
+$todoForm.addEventListener('input', handleInputTyping);
 $statusList.forEach($status => {
   $status.addEventListener('click', handleStatusClick);
 });
@@ -16,21 +17,34 @@ $statusList.forEach($status => {
 function handleTodoSubmit(event) {
   event.preventDefault();
 
-  const newTodo = new FormData(this).get('todo-details');
-  if (!newTodo) return;
+  const todoDetails = new FormData(this).get('todo-details');
+  if (!todoDetails.trim()) return;
 
   todoList.push({
     id: Math.floor(new Date().getTime() * Math.random()),
-    details: newTodo,
+    details: todoDetails,
     completed: getCurrentStatus() === 'completed'
   });
   todoListStorage.save(todoList);
 
   $todoForm.reset();
+  handleInputTyping.call(this);
 
   renderTodoList(
     filterTodoListByStatus(getCurrentStatus())
   );
+}
+
+function handleInputTyping() {
+  const todoDetails = new FormData(this).get('todo-details');
+  const $btnSubmit = this.querySelector('button[type="submit"]');
+
+  if (!todoDetails.trim()) {
+    $btnSubmit.disabled = true;
+    return;
+  }
+
+  $btnSubmit.disabled = false;
 }
 
 function handleStatusClick(event) {
