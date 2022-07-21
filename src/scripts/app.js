@@ -28,6 +28,7 @@ function handleTodoSubmit(event) {
   });
   todoListStorage.save(todoList);
 
+  $todoForm.querySelector('input').focus();
   $todoForm.reset();
   handleInputTyping.call(this);
 
