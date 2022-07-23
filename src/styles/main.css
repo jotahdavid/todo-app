@@ -152,6 +152,7 @@ body {
   grid-template-columns: 1.25rem 1fr 2rem;
   gap: 1rem;
 
+  padding: 0.5rem 0;
   margin-bottom: 1.5rem;
 }
 
@@ -242,6 +243,42 @@ body {
 
 .button-delete:hover {
   background-color: rgb(226, 47, 47);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(32, 33, 36);
+  }
+
+  .header__title {
+    color: #e8eaed;
+  }
+
+  .status-list {
+    border-bottom: 1px solid rgba(189, 189, 189, 1);
+  }
+
+  .status-list__status {
+    color: #e8eaed;
+  }
+
+  .todo-form__details {
+    background-color: rgba(241, 243, 244, 0.25);
+    color: rgba(255, 255, 255, 0.8);
+    border: transparent;
+  }
+
+  .todo-list__details {
+    color: #e8eaed;
+  }
+
+  .todo-list__delete__icon {
+    color: #e8eaed;
+  }
+
+  .button-delete {
+    color: #e8eaed;
+  }
 }
 
 @media screen and (min-width: 30rem) {
