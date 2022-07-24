@@ -1,5 +1,8 @@
+import { initializeToggleTheme } from './toggleTheme.js';
+
 import TodoItem from './components/TodoItem.js';
 import ButtonDelete from './components/ButtonDelete.js';
+
 import LocalStorageHelper from './utils/LocalStorageHelper.js';
 import randomId from './utils/randomId.js';
 
@@ -138,4 +141,5 @@ function renderTodoList(todoListToRender) {
 
 window.addEventListener('load', () => {
   renderTodoList(todoList);
+  initializeToggleTheme();
 });
