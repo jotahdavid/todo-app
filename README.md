@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="ToDo" title="ToDo" src="https://cdn.discordapp.com/attachments/882453270281461810/1000568400394854400/todo.svg" width="200px" />
+  <img alt="ToDo" title="ToDo" src="./.github/todo-logo.svg" width="200px" />
 </h1>
 
 <p align="center">
