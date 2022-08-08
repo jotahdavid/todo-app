@@ -26,7 +26,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Aplicação de Todo List simples criada com base em um dos desafios propostos pelo ![devChallenges](https://devchallenges.io/challenges/hH6PbOHBdPm6otzw2De5)
+Aplicação de Todo List simples criada com base em um dos desafios propostos pelo [devChallenges](https://devchallenges.io/challenges/hH6PbOHBdPm6otzw2De5)
 
 ## 🔖 Layout
 
